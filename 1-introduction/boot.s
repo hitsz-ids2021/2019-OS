@@ -1,4 +1,6 @@
 .code16
+.text
+
 init:
     mov %cs, %ax
     mov %ax, %ds
