@@ -33,7 +33,7 @@
   - loader.asm   硬盘启动汇编loader程序  
   6.使用nasm对上述汇编代码编译，生成二进制：
     > nasm -o mbr_disk.bin mbr_disk.asm
-    nasm -o loader.bin loader.asm
+    nasm -o loader.bin loader.asm  
   7.执行以下命令，生成虚拟磁盘文件
     > dd if=mbr_disk.bin of=hello.img bs=512 count=1 conv=notrunc
     dd if=loader.bin of=hello.img bs=512 count=1 seek=2 conv=notrunc
@@ -78,41 +78,13 @@
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/%E6%96%B0%E7%A1%AC%E7%9B%98.png?raw=true"></div>
       <div align=center>图3-1 添加新硬盘</div>
     查看新硬盘设备  
-    ls /dev/sdb  
+    > ls /dev/sdb  
     切换root用户  
-    sudo su  
+    > sudo su  
     mount /dev/sdb1 /mnt/  
     grub-install --force --boot-directory=/mnt/boot /dev/sdb  
     将/boot目录下的vmlinuz-4.15.0-29-generic和initramfs-4.15.0-29-generic复制到/mnt/boot目录下，将/boot/grub/grub.cfg复制到/mnt/boot/grub下。找到以下内容:    
-    ```if [ x$feature_default_font_path = xy ] ; then
-   font=unicode
-else
-insmod part_msdos
-insmod ext2
-set root='hd0,msdos1'
-if [ x$feature_platform_search_hint = xy ]; then
-  search --no-floppy --fs-uuid --set=root --hint-bios=hd0,msdos1 --hint-efi=hd0,msdos1 --hint-baremetal=ahci0,msdos1  92a792cc-f3e7-4c2b-8109-3079e7db9847
-else
-  search --no-floppy --fs-uuid --set=root 92a792cc-f3e7-4c2b-8109-3079e7db9847
-fi
-    font="/usr/share/grub/unicode.pf2"
-fi
-menuentry 'Ubuntu' --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option 'gnulinux-3.10.0-693.el7.x86_64-advanced-fc917edf-581b-4d6e-b2c8-033181f35712' {
-        load_video
-        set gfxpayload=keep
-        insmod gzio
-        insmod part_msdos
-        insmod xfs
-        set root='hd0,msdos1'
-        if [ x$feature_platform_search_hint = xy ]; then
-          search --no-floppy --fs-uuid --set=root --hint-bios=hd0,msdos1 --hint-efi=hd0,msdos1 --hint-baremetal=ahci0,msdos1 --hint='hd0,msdos1'  92a792cc-f3e7-4c2b-8109-3079e7db9847
-        else
-          search --no-floppy --fs-uuid --set=root 1FC9-A509
-        fi
-        linux /boot/vmlinuz-4.15.0-29-generic root=UUID=92a792cc-f3e7-4c2b-8109-3079e7db9847 ro rhgb quiet LANG=en_US.UTF-8
-        initrd /boot/initramfs-4.15.0-29-generic
-}```
-
+    
    将id号1FC9-A509改为自己新建硬盘的id号。查看id号用blkid命令。  
    重启系统验证硬盘可启动，进入后可使用linux命令操作。   
 
