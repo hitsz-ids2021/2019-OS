@@ -31,11 +31,13 @@
 
   - mbr_disk.asm 硬盘启动汇编mbr程序  
   - loader.asm   硬盘启动汇编loader程序  
+  
   6.使用nasm对上述汇编代码编译，生成二进制：
-    > nasm -o mbr_disk.bin mbr_disk.asm
+    >nasm -o mbr_disk.bin mbr_disk.asm
     nasm -o loader.bin loader.asm  
+    
   7.执行以下命令，生成虚拟磁盘文件
-    > dd if=mbr_disk.bin of=hello.img bs=512 count=1 conv=notrunc
+    >dd if=mbr_disk.bin of=hello.img bs=512 count=1 conv=notrunc
     dd if=loader.bin of=hello.img bs=512 count=1 seek=2 conv=notrunc
     dd if=/dev/zero of=emptydisk1.img bs=512 count=2880
     dd if=emptydisk1.img of=hello.img seek=3 bs=512 count=3000
@@ -78,20 +80,17 @@
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/%E6%96%B0%E7%A1%AC%E7%9B%98.png?raw=true"></div>
       <div align=center>图3-1 添加新硬盘</div>
     查看新硬盘设备  
-    > ls /dev/sdb  
-    切换root用户  
-    > sudo su  
-    mount /dev/sdb1 /mnt/  
-    grub-install --force --boot-directory=/mnt/boot /dev/sdb  
-    将/boot目录下的vmlinuz-4.15.0-29-generic和initramfs-4.15.0-29-generic复制到/mnt/boot目录下，将/boot/grub/grub.cfg复制到/mnt/boot/grub下。找到以下内容:    
+    >ls /dev/sdb  
     
+   切换root用户  
+   >sudo su  
+      mount /dev/sdb1 /mnt/  
+      grub-install --force --boot-directory=/mnt/boot /dev/sdb  
+	  
+   将/boot目录下的vmlinuz-4.15.0-29-generic和initramfs-4.15.0-29-generic复制到/mnt/boot目录下，将/boot/grub/grub.cfg复制到/mnt/boot/grub下。找到以下内容:    
+      <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/grub.png?raw=true"></div>
    将id号1FC9-A509改为自己新建硬盘的id号。查看id号用blkid命令。  
    重启系统验证硬盘可启动，进入后可使用linux命令操作。   
 
       
   
-  
-      
-      
-
-
