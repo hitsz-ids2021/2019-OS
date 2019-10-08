@@ -45,31 +45,31 @@
   把以上生成boot.img和hello.vmdk都拷贝到虚拟机外。
   
   1.软盘启动。
-    -实验vmware虚拟机将生成的boot.img挂载成软盘。
-    -在虚拟机上添加设备。
+    - 实验vmware虚拟机将生成的boot.img挂载成软盘。
+    - 在虚拟机上添加设备。
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/1.png?raw=true"></div>
       <div align=center>图1-1 添加设备</div>
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/%E8%BD%AF%E9%A9%B1.png?raw=true"></div>
       <div align=center>图1-2 选择软驱</div>
-    -添加完成后重启虚拟机。
-    -实验结果如图所示：
+    - 添加完成后重启虚拟机。
+    - 实验结果如图所示：
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/%E8%BD%AF%E7%9B%98%E5%90%AF%E5%8A%A8%E7%BB%93%E6%9E%9C.png?raw=true"></div>
       <div align=center>图1-3 软盘启动结果</div>
       
    2.硬盘启动
-     -实验vmware虚拟机将生成的hello.vmdk挂载成虚拟磁盘。
+     - 实验vmware虚拟机将生成的hello.vmdk挂载成虚拟磁盘。
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/%E7%8E%B0%E6%9C%89%E7%A1%AC%E7%9B%98.png?raw=true"></div>
       <div align=center>图2-1 选择"现有硬盘"</div>
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/IDE.png?raw=true"></div>
       <div align=center>图2-2 总线类型为IDE</div>
-     -添加完后，选择“启动到固件”。
+     - 添加完后，选择“启动到固件”。
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/%E5%9B%BA%E4%BB%B6.png?raw=true"></div>
       <div align=center>图2-3 启动到固件</div>
-     -在Boot项把VMware Virtual IDE Hard-(PM)移到第一个。
+     - 在Boot项把VMware Virtual IDE Hard-(PM)移到第一个。
        <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/%E4%BF%AE%E6%94%B9%E9%A1%BA%E5%BA%8F.png?raw=true"></div>
       <div align=center>图2-4 修改启动顺序</div>
-     -按F10保存并退出。
-     -实验结果如图所示：
+     - 按F10保存并退出。
+     - 实验结果如图所示：
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/%E7%A1%AC%E7%9B%98%E7%BB%93%E6%9E%9C.png?raw=true"></div>
       <div align=center>图2-5 硬盘启动结果</div>
 
