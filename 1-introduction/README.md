@@ -46,5 +46,5 @@
   1、软盘启动。
      实验vmware虚拟机将生成的boot.img挂载成软盘。
      在虚拟机上添加设备。
-     ![启动软盘](https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/1.png?raw=true)
+     ![启动软盘](https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/1.png?raw=true){:height="50%" width="50%"}
 
