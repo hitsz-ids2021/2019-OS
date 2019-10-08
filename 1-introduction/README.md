@@ -21,10 +21,10 @@
   - boot.s at&t格式的软盘启动汇编程序 
   1. VMware虚拟机、Ubuntu 18.04操作系统
   2. 编译代码，生成二进制：
-     as -o boot.o boot.s
-     ld -o boot.bin --oformat binary -e init -Ttext 0x7c00 -o boot.bin boot.o
+     > as -o boot.o boot.s  
+     > ld -o boot.bin --oformat binary -e init -Ttext 0x7c00 -o boot.bin boot.o
   3. 使用软盘镜像来模拟软盘。执行以下命令，写入软盘的第一个扇区。
-     dd if=/dev/zero of=emptydisk.img bs=512 count=2880 #生成空白软盘镜像文件
+     > dd if=/dev/zero of=emptydisk.img bs=512 count=2880 #生成空白软盘镜像文件
      dd if=boot.bin of=boot.img bs=512 count=1 #用 bin file 生成对应的镜像文件
      dd if=emptydisk.img of=boot.img skip=1 seek=1 bs=512 count=2879 #在 bin 生成的镜像文件后补上空白，成为
 合适大小的软盘镜像
@@ -83,8 +83,9 @@
     sudo su  
     mount /dev/sdb1 /mnt/  
     grub-install --force --boot-directory=/mnt/boot /dev/sdb  
-    将/boot目录下的vmlinuz-4.15.0-29-generic和initramfs-4.15.0-29-generic复制到/mnt/boot目录下，将/boot/grub/grub.cfg复制到/mnt/boot/grub下。找到以下内容:      ```
-    if [ x$feature_default_font_path = xy ] ; then
+    将/boot目录下的vmlinuz-4.15.0-29-generic和initramfs-4.15.0-29-generic复制到/mnt/boot目录下，将/boot/grub/grub.cfg复制到/mnt/boot/grub下。找到以下内容:    
+        ```
+ if [ x$feature_default_font_path = xy ] ; then
    font=unicode
 else
 insmod part_msdos
@@ -113,9 +114,9 @@ menuentry 'Ubuntu' --class gnu-linux --class gnu --class os --unrestricted $menu
         initrd /boot/initramfs-4.15.0-29-generic
 }
 
-```  
-    将id号1FC9-A509改为自己新建硬盘的id号。查看id号用blkid命令。  
-    重启系统验证硬盘可启动，进入后可使用linux命令操作。   
+```
+   将id号1FC9-A509改为自己新建硬盘的id号。查看id号用blkid命令。  
+   重启系统验证硬盘可启动，进入后可使用linux命令操作。   
 
       
   
