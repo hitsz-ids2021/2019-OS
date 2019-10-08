@@ -3,7 +3,7 @@
   - test2.c 使用和分析系统调用write()  
     
 # 实验2 一个典型操作系统的启动
-## 实验步骤
+## 2.1 实验步骤
   - boot.asm 软盘启动汇编程序
   1. VMware虚拟机、Ubuntu 18.04操作系统
   2. nasm编译软件。Nasm是一个汇编器，可以从Linux发行版的软件仓库安装。
@@ -41,10 +41,10 @@
     dd if=emptydisk1.img of=hello.img seek=3 bs=512 count=3000
     qemu-img convert -f raw hello.img -O vmdk hello.vmdk
   
-  ## 实验结果
+  ## 2.2 实验结果
   把以上生成boot.img和hello.vmdk都拷贝到虚拟机外。
   1、软盘启动。
      实验vmware虚拟机将生成的boot.img挂载成软盘。
      在虚拟机上添加设备。
-     ![启动软盘](/Users/liu/Documents/TA/OS/img/1.png )
+     ![启动软盘](https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/img/1.png?raw=true)
 
