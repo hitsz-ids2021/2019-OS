@@ -67,11 +67,11 @@
       添加完后，选择“启动到固件”。
       	<div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E5%9B%BA%E4%BB%B6.png?raw=true"></div>
       	<div align=center>图2-3 启动到固件</div>
-     在Boot项把VMware Virtual IDE Hard-(PM)移到第一个。
+      在Boot项把VMware Virtual IDE Hard-(PM)移到第一个。
        	<div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E4%BF%AE%E6%94%B9%E9%A1%BA%E5%BA%8F.png?raw=true"></div>
       	<div align=center>图2-4 修改启动顺序</div>
-     按F10保存并退出。  
-     实验结果如图所示：
+      按F10保存并退出。  
+      实验结果如图所示：
      	 <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E7%A1%AC%E7%9B%98%E7%BB%93%E6%9E%9C.png?raw=true"></div>
      	 <div align=center>图2-5 硬盘启动结果</div>
   
