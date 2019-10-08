@@ -32,41 +32,41 @@
   - mbr_disk.asm 硬盘启动汇编mbr程序  
   - loader.asm   硬盘启动汇编loader程序
   
-  6.使用nasm对上述汇编代码编译，生成二进制：  
-    > nasm -o mbr_disk.bin mbr_disk.asm
-    nasm -o loader.bin loader.asm
+  6. 使用nasm对上述汇编代码编译，生成二进制：  
+     > nasm -o mbr_disk.bin mbr_disk.asm
+     nasm -o loader.bin loader.asm
     
-  7.执行以下命令，生成虚拟磁盘文件:  
-    > dd if=mbr_disk.bin of=hello.img bs=512 count=1 conv=notrunc
-    dd if=loader.bin of=hello.img bs=512 count=1 seek=2 conv=notrunc
-    dd if=/dev/zero of=emptydisk1.img bs=512 count=2880
-    dd if=emptydisk1.img of=hello.img seek=3 bs=512 count=3000
-    qemu-img convert -f raw hello.img -O vmdk hello.vmdk
+  7. 执行以下命令，生成虚拟磁盘文件:  
+     > dd if=mbr_disk.bin of=hello.img bs=512 count=1 conv=notrunc
+     dd if=loader.bin of=hello.img bs=512 count=1 seek=2 conv=notrunc
+     dd if=/dev/zero of=emptydisk1.img bs=512 count=2880
+     dd if=emptydisk1.img of=hello.img seek=3 bs=512 count=3000
+     qemu-img convert -f raw hello.img -O vmdk hello.vmdk
   
   ## 2.2 实验结果
   把以上生成boot.img和hello.vmdk都拷贝到虚拟机外。
   
-  1.软盘启动。  
-    实验vmware虚拟机将生成的boot.img挂载成软盘。  
-    在虚拟机上添加设备。  
+  1. 软盘启动。  
+     实验vmware虚拟机将生成的boot.img挂载成软盘。  
+     在虚拟机上添加设备。  
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/1.png?raw=true"></div>
       <div align=center>图1-1 添加设备</div>
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E8%BD%AF%E9%A9%B1.png?raw=true"></div>
       <div align=center>图1-2 选择软驱</div>
-    添加完成后重启虚拟机。  
-    实验结果如图所示：
+     添加完成后重启虚拟机。  
+     实验结果如图所示：
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E8%BD%AF%E7%9B%98%E5%90%AF%E5%8A%A8%E7%BB%93%E6%9E%9C.png?raw=true"></div>
       <div align=center>图1-3 软盘启动结果</div>
       
-   2.硬盘启动  
-     实验vmware虚拟机将生成的hello.vmdk挂载成虚拟磁盘。
-      <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E7%8E%B0%E6%9C%89%E7%A1%AC%E7%9B%98.png?raw=true"></div>
-      <div align=center>图2-1 选择"现有硬盘"</div>
-      <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/IDE.png?raw=true"></div>
-      <div align=center>图2-2 总线类型为IDE</div>
-     添加完后，选择“启动到固件”。
-      <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E5%9B%BA%E4%BB%B6.png?raw=true"></div>
-      <div align=center>图2-3 启动到固件</div>
+   2. 硬盘启动  
+      实验vmware虚拟机将生成的hello.vmdk挂载成虚拟磁盘。
+      	<div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E7%8E%B0%E6%9C%89%E7%A1%AC%E7%9B%98.png?raw=true"></div>
+      	<div align=center>图2-1 选择"现有硬盘"</div>
+      	<div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/IDE.png?raw=true"></div>
+      	<div align=center>图2-2 总线类型为IDE</div>
+      添加完后，选择“启动到固件”。
+      	<div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E5%9B%BA%E4%BB%B6.png?raw=true"></div>
+      	<div align=center>图2-3 启动到固件</div>
      在Boot项把VMware Virtual IDE Hard-(PM)移到第一个。
        <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E4%BF%AE%E6%94%B9%E9%A1%BA%E5%BA%8F.png?raw=true"></div>
       <div align=center>图2-4 修改启动顺序</div>
@@ -80,12 +80,12 @@
       <div align=center><img width="350" height="250" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/%E6%96%B0%E7%A1%AC%E7%9B%98.png?raw=true"></div>
       <div align=center>图3-1 添加新硬盘</div>
    查看新硬盘设备  
-   >ls /dev/sdb  
+   > ls /dev/sdb  
     
    切换root用户  
-   >sudo su  
-      mount /dev/sdb1 /mnt/  
-      grub-install --force --boot-directory=/mnt/boot /dev/sdb  
+   > sudo su  
+     mount /dev/sdb1 /mnt/  
+     grub-install --force --boot-directory=/mnt/boot /dev/sdb  
 	  
    将/boot目录下的vmlinuz-4.15.0-29-generic和initramfs-4.15.0-29-generic复制到/mnt/boot目录下，将/boot/grub/grub.cfg复制到/mnt/boot/grub下。找到以下内容:    
       <div align=center><img width="550" height="450" src="https://github.com/HITSZ-SYSTEMS/2019-OS/blob/master/1-introduction/img/grub.png?raw=true"></div>
