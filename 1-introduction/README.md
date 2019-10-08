@@ -30,13 +30,13 @@
 合适大小的软盘镜像
 
   - mbr_disk.asm 硬盘启动汇编mbr程序  
-  - loader.asm   硬盘启动汇编loader程序  
+  - loader.asm   硬盘启动汇编loader程序
   
-  6.使用nasm对上述汇编代码编译，生成二进制：
+  6.使用nasm对上述汇编代码编译，生成二进制：  
     > nasm -o mbr_disk.bin mbr_disk.asm
-    nasm -o loader.bin loader.asm  
+    nasm -o loader.bin loader.asm
     
-  7.执行以下命令，生成虚拟磁盘文件
+  7.执行以下命令，生成虚拟磁盘文件:  
     > dd if=mbr_disk.bin of=hello.img bs=512 count=1 conv=notrunc
     dd if=loader.bin of=hello.img bs=512 count=1 seek=2 conv=notrunc
     dd if=/dev/zero of=emptydisk1.img bs=512 count=2880
