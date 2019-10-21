@@ -1,7 +1,9 @@
 /* $begin shellmain */
 //#include "csapp.h"
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h>
+#include <sys/wait.h>
+#include <string.h>
 #include <sys/types.h> //pid_t
 #include <unistd.h>
 #include <signal.h>
@@ -100,10 +102,9 @@ void eval(char *cmdline)
 		unix_error("waitfg: waitpid error");
 	}
 	else {
-        printf("%d %s", pid, cmdline);
-        kill(pid,SIGKILL);
-    }
-    }
+            printf("%d %s", pid, cmdline);
+            kill(pid,SIGKILL);
+    	}
     }
     return;
 }

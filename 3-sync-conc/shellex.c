@@ -1,6 +1,8 @@
 /* $begin shellmain */
 //#include "csapp.h"
 #include <stdio.h>
+#include <sys/wait.h>
+#include <string.h>
 #include <stdlib.h> 
 #include <sys/types.h> //pid_t
 #include <unistd.h>
