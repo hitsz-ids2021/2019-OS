@@ -1,0 +1,48 @@
+%{
+#include<linux/sched.h>
+#include<linux/list.h>
+#include<linux/signal.h>
+%}
+
+function print_details(task:long) {
+    //打印blocked
+    the_blocked = @cast(task, "task_struct", "kernel<linux/sched.h>")->blocked->sig[0];
+    //打印pending signal
+    the_pending_signal = @cast(task, "task_struct", "kernel<linux/sched.h>")->pending->signal->sig[0];
+
+    //打印shared pending signal
+    shared_pending_signal = @cast(task, "task_struct", "kernel<linux/sched.h>")->signal->shared_pending->signal->sig[0];
+   
+    //打印sighand中的count
+    the_sighand_count = @cast(task, "task_struct", "kernel<linux/sched.h>")->sighand->count->counter;
+    printf("the_pending_signal:%x\n",the_pending_signal);
+    printf("shared_pending_signal:%x\n",shared_pending_signal);
+    
+    printf("Blocked:%ld\n",the_blocked); 
+    printf("Counter:%d\n",the_sighand_count);
+
+    //打印action列表前十项
+    for (i = 0; i < 10; i++) {
+        the_sighand_sa_flags = @cast(task, "task_struct", "kernel<linux/sched.h>")->sighand->action[i]->sa->sa_flags;
+        the_sighand_sa_mask = @cast(task, "task_struct", "kernel<linux/sched.h>")->sighand->action[i]->sa->sa_mask->sig[0];
+        printf("action[%d]:\n",i);
+        printf("sa_flags:%d--%s\n",the_sighand_sa_flags,sa_flags_str(the_sighand_sa_flags));
+        printf("sa_mask:%ld\n",the_sighand_sa_mask);
+    }
+}
+
+probe begin{
+    printf("before kill signal , probe process %ld......\n",$1);
+    print_details(pid2task($1));
+}
+
+probe signal.send {
+
+    printf("probe signal ......\n");
+    //监控指定信号
+    if (sig_name == "SIGKILL"){
+        printf("After kill signal, probe process %ld ......\n",sig_pid);
+        print_details(pid2task(sig_pid));
+        exit();
+    }
+}
