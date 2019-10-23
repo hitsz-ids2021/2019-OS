@@ -2,4 +2,5 @@
 int main()
 {
     printf("Hello HIT!\n");
+    return 0;
 }
