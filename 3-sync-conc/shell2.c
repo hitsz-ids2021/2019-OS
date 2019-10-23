@@ -19,11 +19,12 @@ int builtin_command(char **argv);
 void app_error(char *msg);
 void unix_error(char *msg);
 char *Fgets(char *ptr, int n, FILE *stream);
+void handler(int signum);
 
 int main() 
 {
     char cmdline[MAXLINE]; /* Command line */
-
+    signal(SIGCHLD, handler);
     while (1) {
 	/* Read */
 	printf("> ");                   
@@ -101,10 +102,8 @@ void eval(char *cmdline)
 	    if (waitpid(pid, &status, 0) < 0)
 		unix_error("waitfg: waitpid error");
 	}
-	else {
+	else 
             printf("%d %s", pid, cmdline);
-            kill(pid,SIGKILL);
-    	}
     }
     return;
 }
@@ -155,3 +154,8 @@ int parseline(char *buf, char **argv)
 /* $end parseline */
 
 
+void handler(int signum)
+{
+    int status;  
+    while(waitpid(-1, &status, WNOHANG) > 0); 
+}
