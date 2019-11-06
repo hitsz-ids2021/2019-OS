@@ -1,10 +1,9 @@
-//gcc -o benchmark benchmark.c -DFLOAT
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "include/cpe.h"
 #include "combine.h"
-// #include "vec.h"
+
 
 #define SHORT 0
 #if SHORT 
@@ -127,6 +126,7 @@ int main()
     for (i = 0; i < benchmark_count; i++) {
         run_test(i);
     }
+    printf("\n");
     return 0;
 }
 

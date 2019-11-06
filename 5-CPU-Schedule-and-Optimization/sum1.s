@@ -62,5 +62,5 @@ sum_rows1:
 	.cfi_endproc
 .LFE0:
 	.size	sum_rows1, .-sum_rows1
-	.ident	"GCC: (Ubuntu 5.3.1-14ubuntu2) 5.3.1 20160413"
+	.ident	"GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.10) 5.4.0 20160609"
 	.section	.note.GNU-stack,"",@progbits
